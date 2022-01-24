@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Montserrat&display=swap');
 
+body{
+    background-color: rgb(224, 249, 255);
+}
+
 .navbar{
     padding-right: 30px;
     width:100vw;

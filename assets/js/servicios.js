@@ -1,15 +1,27 @@
 $(document).ready(function () {
-    TDate = ()=> {
-      console.log("object");
-    var UserDate = document.getElementById("userdate").value;
-    var ToDate = new Date();
+  
 
-    if (new Date(UserDate).getTime() <= ToDate.getTime()) {
-          alert("La fecha seleccionada debe ser mayor al 2001");
+    TDate = ()=> {
+
+    let UserDate = document.getElementById("userdate").value;
+    let ToDate = new Date();
+    
+    ToDate.setFullYear(2001,12,0)
+
+    if (new Date(UserDate).getTime() >= new Date(ToDate).getTime()) {
+          alert("Error, La fecha seleccionada debe ser previo al 01/01/2002");
+          
+          $('#button').on('click', function () {
+            $(this).prop("disabled", true);
+          })
           return false;
+    }else{
+      $('#button').on('click', function () {
+        $(this).prop("disabled", false);
+        return true;
+      })
     }
-    return true;
-  }
+  },
   $("#formulario").validate({
     rules: {
       rut:{
