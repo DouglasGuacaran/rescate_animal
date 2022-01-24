@@ -34,7 +34,7 @@
                     </ul>
                     <form class="d-flex">
                     <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Buscar</button>
+                    <button class="btn btn-outline-success" type="submit" >Buscar</button>
                     </form>
                 </div>
                 </div>
@@ -56,7 +56,7 @@
                             <label class="col-form-label ">Correo electrónico</label>
                         </div>
                         <div class="col-6 col-sm-4 col-md-4 col-lg-5 m-0 p-0">
-                            <input id="correo" name="correo" type="email" required class="form-control">
+                            <input id="correo" name="email" type="text"class="form-control">
                             <span id="error" style="display:none;color:red;">Correo no válido</span>
                             <span id="success" style="display:none;color:green;">Correo válido</span>
                         </div>
@@ -73,8 +73,9 @@
                     </div>
                     
                     <div class="col-1 digito m-0 p-0">
-                        <input name="digito" type="text" class="form-control">
+                        <input id="digito" name="digito" type="text" class="form-control">
                     </div>
+                    
                     <div class="col-auto mt-3">
                         <span class="col form-text">
                             Debe ingresar dígito verificador.
@@ -86,7 +87,7 @@
                         <label class="col-form-label">Nombre completo</label>
                     </div>
                     <div class="col-6 col-sm-4 col-md-4 col-lg-5 m-0 p-0">
-                        <input name="nombre" type="text" class="form-control">
+                        <input type="text" name="nombre" oninput="lettersOnlyCheck(this)" class="form-control">
                     </div>
                 </div>
                 <div class="row m-1 p-1">
@@ -94,7 +95,12 @@
                         <label class="col-form-label">Fecha de Nacimiento</label>
                     </div>
                     <div class="col-10 col-sm-4 col-md-4 col-lg-3 col-xl-2 m-0 p-0">
-                        <input type="date" id="userdate" name="fechaNac" class="form-control" onchange="TDate()" required>
+                        <input type="date" id="userdate" class="form-control" onchange="TDate()" required>
+                    </div>
+                    <div class="col-auto mt-3">
+                        <span id="fechaNac" class="col form-text" show="false">
+                            Debe ingresar Fecha de Nacimiento.
+                        </span>
                     </div>
                 </div>
                 <div class="row m-1 p-1">
@@ -140,10 +146,9 @@
                 </div>
                 <div class="row ">
                     <div class="col-auto mx-auto">
-                        <button id="button" class="btn btn-primary" type="submit">Postular</button>
+                        <button id="button" class="btn btn-primary" type="submit" >Postular</button>
                     </div>
                 </div>
-
             </form>
         </div>
 

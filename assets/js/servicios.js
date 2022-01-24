@@ -1,29 +1,33 @@
 $(document).ready(function () {
-  
 
-    TDate = ()=> {
-
-    let UserDate = document.getElementById("userdate").value;
-    let ToDate = new Date();
-    
-    ToDate.setFullYear(2001,12,0)
-
-    if (new Date(UserDate).getTime() >= new Date(ToDate).getTime()) {
-          alert("Error, La fecha seleccionada debe ser previo al 01/01/2002");
-          
-          $('#button').on('click', function () {
-            $(this).prop("disabled", true);
-          })
-          return false;
-    }else{
-      $('#button').on('click', function () {
-        $(this).prop("disabled", false);
-        return true;
-      })
+  $('#correo').on('keyup', function() {
+    let re = /([A-Z0-9a-z_-][^@])+?@[^$#<>?]+?\.[\w]{2,4}/.test(this.value);
+    if(!re) {
+        $('#error').show();
+        $('#success').hide();
+    } else {
+        $('#error').hide();
+        $('#success').show();
     }
-  },
+  }),
+  lettersOnlyCheck = (element)=>  {
+    let regEx = /^[a-zA-Z\s]+$/;
+    let nombres = element.value
+    if(nombres.match(regEx)) {
+      return true;
+      }
+    else
+      {
+      alert("Por favor ingrese solo letras.");
+      return false;
+      }
+  }
+
   $("#formulario").validate({
     rules: {
+      email:{
+        required: true
+      },
       rut:{
         required: true,
         number: true,
@@ -33,12 +37,10 @@ $(document).ready(function () {
       digito: {
         minlength: 1,
         maxlength: 1,
-        required: true,
+        required:  true,
       },
       nombre: {
         required: true,
-        minlength: 3,
-        maxlength: 20,
       },
       telefono: {
         required: true,
@@ -46,17 +48,11 @@ $(document).ready(function () {
         minlength: 3,
         maxlength: 15,
       },
-      año: {
-        required: true,
-        number: true,
-        minlength: 4,
-        maxlength: 4,
-      },
     },
     messages : {
       email:{
-        required:'Escriba una dirección de correo electrónico'
-      }, 
+        required: 'debe ingresar algún correo electrónico'
+      },
       rut : { 
         required:'Escriba el rut', 
         number:'Sólo deben ser números sin punton ni guión', 
@@ -66,13 +62,10 @@ $(document).ready(function () {
       digito:{
         minlength: 'Agregue al menos un número',
         maxlength: 'Sólo se permite un dígito verificador',
-        range: 'El número no debe ser mayor a ocho',
-        required: 'debe ingresar un dígito verificador',
+        required: 'debe ingresar su dígito verificador'
       },
       nombre: {
         required: "Ingrese su nombre completo",
-        minlength: "Debe tener más de 3 caracteres",
-        maxlength: "No puede tener más de 20 caracteres",
       },
       fechaNac: {
         required: "Ingrese su fecha de nacimiento",
@@ -93,50 +86,42 @@ $(document).ready(function () {
         minlength: "Debe tener más de 3 caracteres",
         maxlength: "No puede tener más de 15 caracteres",
       },
-      año: {
-        required: "Ingrese un año valido",
-        number: "Ingrese un año",
-        minlength: "Debe tener más de 4 caracteres",
-        maxlength: "No puede tener más de 4 caracteres",
-      }
     },
     
     submitHandler: function (formulario) {
-      if (
-        $("#digito").val() == "k" ||
-        $("#digito").val() <= 8 &&
-        $("#digito").val() >= 0
-      ) {
-          let mensaje = document.getElementById("error");
-          if ( $("#digito").val() >= 0 ||  $("#digito").val() == ""){          
-              mensaje.innerHTML = "";
-              alert('Ingreso de orden correcto')
-              $('#formulario')[0].reset();
-          }
-      } else {
-        let mensaje = document.getElementById("error");
-        alert('Error intente de nuevo')
-        mensaje.innerHTML = "ingrese un digito del 0 a el 8 o una letra k";
-      }
-    }
-    
+    },
   }),
+  $('#digito').on('keyup', function() {
+    console.log($("#digito").val());
+    if (
+      $("#digito").val() == "k" ||
+      $("#digito").val() <= 8 &&
+      $("#digito").val() >= 0
+    ) {
+        let mensaje = document.getElementById("errordigito");
+        if ( $("#digito").val() > 0 ||  $("#digito").val() == ""){
+            mensaje.innerHTML = "";
+        }
+    }else {
+        let mensaje = document.getElementById("errordigito");
+      mensaje.innerHTML = "ingrese un digito del 0 a el 8 o una letra k";
+    }
+  }),
+  TDate = ()=> {
+    let UserDate = document.getElementById("userdate").value;
+    let ToDate = new Date();
+    ToDate.setFullYear(2001,12,0)
+    if (new Date(UserDate).getTime() >= new Date(ToDate).getTime()) {
+      alert("Error, La fecha seleccionada debe ser previo al 01/01/2002");
+      return false;
+    }else{
+      return true;
+    }
+  },
   $('#fechaNac').on('click', function(value, element, params) {
     let fecha = $('#fechaNac').value;
-    console.log(fecha);
-  }),
-  $('#correo').on('keyup', function() {
-    var re = /([A-Z0-9a-z_-][^@])+?@[^$#<>?]+?\.[\w]{2,4}/.test(this.value);
-    if(!re) {
-        $('#error').show();
-        $('#success').hide();
-    } else {
-        $('#error').hide();
-        $('#success').show();
-    }
   })
   var RegionesYcomunas = {
-
     "regiones": [{
         "NombreRegion": "Arica y Parinacota",
         "comunas": ["Arica", "Camarones", "Putre", "General Lagos"]
@@ -195,11 +180,9 @@ $(document).ready(function () {
     },
       {
         "NombreRegion": "Región Metropolitana de Santiago",
-        "comunas": ["Cerrillos", "Cerro Navia", "Conchalí", "El Bosque", "Estación Central", "Huechuraba", "Independencia", "La Cisterna", "La Florida", "La Granja", "La Pintana", "La Reina", "Las Condes", "Lo Barnechea", "Lo Espejo", "Lo Prado", "Macul", "Maipú", "Ñuñoa", "Pedro Aguirre Cerda", "Peñalolén", "Providencia", "Pudahuel", "Quilicura", "Quinta Normal", "Recoleta", "Renca", "San Joaquín", "San Miguel", "San Ramón", "Vitacura", "Puente Alto", "Pirque", "San José de Maipo", "Colina", "Lampa", "Tiltil", "San Bernardo", "Buin", "Calera de Tango", "Paine", "Melipilla", "Alhué", "Curacaví", "María Pinto", "San Pedro", "Talagante", "El Monte", "Isla de Maipo", "Padre Hurtado", "Peñaflor"]
+        "comunas": ["Cerrillos", "Cerro Navia", "Conchalí", "El Bosque", "Estación Central", "Huechuraba", "Independencia", "La Cisterna", "La Florida", "La Granja", "La Pintana", "La Reina", "Las Condes", "Lo Barnechea", "Lo Espejo", "Lo Prado", "Macul", "Maipú", "Ñuñoa", "Pedro Aguirre Cerda", "Peñalolén", "Providencia", "Pudahuel", "Quilicura", "Quinta Normal", "Recoleta", "Renca", "San Joaquín", "San Miguel", "San Ramón","Santiago Centro", "Vitacura", "Puente Alto", "Pirque", "San José de Maipo", "Colina", "Lampa", "Tiltil", "San Bernardo", "Buin", "Calera de Tango", "Paine", "Melipilla", "Alhué", "Curacaví", "María Pinto", "San Pedro", "Talagante", "El Monte", "Isla de Maipo", "Padre Hurtado", "Peñaflor"]
     }]
   }
-  
-  
   jQuery(document).ready(function () {
   
     var iRegion = 0;
@@ -213,7 +196,6 @@ $(document).ready(function () {
   
     jQuery('#regiones').html(htmlRegion);
     jQuery('#comunas').html(htmlComunas);
-  
     jQuery('#regiones').change(function () {
       var iRegiones = 0;
       var valorRegion = jQuery(this).val();
@@ -241,7 +223,6 @@ $(document).ready(function () {
       if (jQuery(this).val() == 'sin-region') {
         alert('selecciones Región');
       }
-    });
-  
-  });
+    })
+  })
 })
