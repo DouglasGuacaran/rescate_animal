@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Montserrat&display=swap');
+
+.navbar{
+    padding-right: 30px;
+    width:100vw;
+    position:fixed; 
+    background-color: #ADB283 !important;
+}
+
+#formulario {
+    margin-top:50px;
+}
+
+h1{
+    font-family: Montserrat;
+}

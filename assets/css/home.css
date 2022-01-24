@@ -1,0 +1,35 @@
+ *{
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: rgb(224, 249, 255);
+    margin: auto;
+}
+
+.button{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.btn{
+    border-color: aquamarine;
+    background-color: #ADB283;
+    color: black;
+    opacity: 0.8;
+    padding:20px;
+    border-radius: 20px;
+}
+.btn:hover{
+    border-color: aquamarine;
+    background-color:#ADB283;
+    color:black;
+    opacity: 0.9;
+}
+img {
+    width: 100%;
+}
+
+

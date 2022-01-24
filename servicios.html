@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Douglas Daniel Guacarán Méndez"/>
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/servicios.css">
+    <title>Gatunos</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="home.html">Gatunos</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Quienes Somos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="servicios.html">Servicios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Contáctanos</a>
+                    </li>
+                    </ul>
+                    <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Buscar</button>
+                    </form>
+                </div>
+                </div>
+            </nav>
+    </header>
+
+    <div class="container-fluid">
+        <!--Formulario -->
+        <label>Ingrese los datos del cliente</label>
+        <div class="container"> 
+            <form id="formulario" action="#" method="post">
+                <div class="row">
+                    <div class="col-auto">
+                        <h1> Inscríbete y postula para adoptar una mascota</h1>
+                    </div>
+                </div>
+                <div class="row m-1 p-1">
+                        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                            <label class="col-form-label ">Correo electrónico</label>
+                        </div>
+                        <div class="col-6 col-sm-4 col-md-4 col-lg-5 m-0 p-0">
+                            <input id="correo" name="correo" type="email" required class="form-control">
+                            <span id="error" style="display:none;color:red;">Correo no válido</span>
+                            <span id="success" style="display:none;color:green;">Correo válido</span>
+                        </div>
+                </div>
+                <div class="row m-1 p-1">
+                    <div class="col-2">
+                        <label class="col-form-label">RUT</label>
+                    </div>
+                    <div class="col-2 m-0 p-0">
+                        <input name="rut" type="text" class="form-control">
+                    </div>
+                    <div class="col-auto m-0 mt-1 p-0">
+                        -
+                    </div>
+                    
+                    <div class="col-1 digito m-0 p-0">
+                        <input name="digito" type="text" class="form-control">
+                    </div>
+                    <div class="col-auto mt-3">
+                        <span class="col form-text">
+                            Debe ingresar dígito verificador.
+                        </span>
+                    </div>
+                </div>
+                <div class="row m-1 p-1">
+                    <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2">
+                        <label class="col-form-label">Nombre completo</label>
+                    </div>
+                    <div class="col-6 col-sm-4 col-md-4 col-lg-5 m-0 p-0">
+                        <input name="nombre" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="row m-1 p-1">
+                    <div class="col-10 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                        <label class="col-form-label">Fecha de Nacimiento</label>
+                    </div>
+                    <div class="col-10 col-sm-4 col-md-4 col-lg-3 col-xl-2 m-0 p-0">
+                        <input type="date" id="userdate" name="fechaNac"  class="form-control" onchange="TDate()" required>
+                    </div>
+                </div>
+                <div class="row m-1 p-1">
+                    <div class="col-10 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                        <label class="col-form-label">Teléfono de contacto</label>
+                    </div>
+                    <div class="col-10 col-sm-4 col-md-4 col-lg-3 col-xl-2 m-0 p-0">
+                        <input name="telefono" type="text" class="form-control" placeholder="p ej. +56 987654321">
+                    </div>
+                </div>
+                <div class="row m-1 p-1">
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                        <label class="col-form-label">Región</label>
+                    </div>
+                    <div class="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-2 m-0 p-0">
+                        <select id="regiones" class="form-select form-select" aria-label="Default select example">
+                        </select>
+                    </div>
+                </div>
+                <div class="row m-1 p-1">
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                        <label class="col-form-label">Ciudad</label>
+                    </div>
+                    <div class="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-2 m-0 p-0">
+                        <select id="comunas" class="form-select form-select" aria-label="Default select example">
+                        
+                        </select>
+                    </div>
+                </div>
+                <div class="row m-1 p-1">
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                        <label class="col-form-label">Tipo de vivienda</label>
+                    </div>
+                    <div class="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-2 m-0 p-0">
+                        <select class="form-select form-select" aria-label="Default select example">
+                            <option selected>Tipo de vivienda</option>
+                            <option value="1">Casa con patio grande</option>
+                            <option value="2">Casa con patio pequeño</option>
+                            <option value="3">Casa sin patio</option>
+                            <option value="4">Departamento</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col-auto mx-auto">
+                        <button class="btn btn-primary" type="submit">Postular</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
+    <script src="assets/js/servicios.js"></script>
+</body>
+</html>
